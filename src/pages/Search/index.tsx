@@ -4,6 +4,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Autocomplete,
+  CircularProgress,
   Button,
   TextField,
   Typography
@@ -22,25 +23,51 @@ import styles from './Search.module.scss';
 const Search = () => {
   const dispatch = useDispatch();
 
-  const { resultSearchUserState }: UserState = useSelector(
+  const { resultSearchUserState, searchUserHistory }: UserState = useSelector(
     (state: RootState) => state.userReducer
   );
+  const { resultGetRepo }: RepoState = useSelector(
+    (state: RootState) => state.repoReducer
+  );
+  const { loader } = useSelector((state: RootState) => state.loaderReducer);
 
-  const [selectedUser, setSelectedUser] = useState<string | false>(false);
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+
+  const handleSelectUser = ({
+    isThisUserSelected,
+    userId
+  }: {
+    isThisUserSelected: boolean;
+    userId: number;
+  }) => {
+    if (isThisUserSelected) {
+      setSelectedUsers((prevState) => prevState.filter((u) => u !== userId));
+    } else {
+      setSelectedUsers((prevState) => [...prevState, userId]);
+    }
+  };
 
   const [usernameInput, setUsernameInput] = useState<string>('');
 
   const handleSearchUsername = () => {
+    if (loader) {
+      return;
+    }
     dispatch(getResultSearchUser({ username: usernameInput }));
   };
 
   return (
     <div className={styles.mainContainer}>
       <Autocomplete
+        onKeyDown={(e) => {
+          if (e.code === 'Enter') {
+            handleSearchUsername();
+          }
+        }}
         className={styles.searchInput}
         freeSolo
         disableClearable
-        options={['Denny', 'Irvan']}
+        options={searchUserHistory}
         inputValue={usernameInput}
         onInputChange={(_, newValue) => setUsernameInput(newValue)}
         renderInput={(params) => (
@@ -59,44 +86,49 @@ const Search = () => {
         variant="contained"
         onClick={handleSearchUsername}
       >
-        Search
+        {loader ? (
+          <CircularProgress size={25} className={styles.loader} />
+        ) : (
+          <Typography>Search</Typography>
+        )}
       </Button>
-      {resultSearchUserState?.data?.items?.map((u, i) => {
+      {resultSearchUserState?.data?.items?.map((user, userIndex) => {
+        const userId = user.id;
+        const isThisUserSelected = selectedUsers.some((u) => u === userId);
+
         return (
           <Accordion
-            key={i.toString()}
-            expanded={selectedUser === u.login}
-            onChange={() => {
-              if (selectedUser !== u.login) {
-                setSelectedUser(u.login);
-              } else {
-                setSelectedUser(false);
-              }
-            }}
+            key={userIndex.toString()}
+            expanded={isThisUserSelected}
+            onChange={() => handleSelectUser({ isThisUserSelected, userId })}
           >
             <AccordionSummary
               className={styles.userContainer}
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography>{u.login}</Typography>
+              <Typography variant="h6">{user.login}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <div className={styles.repoContainer}>
-                <Typography>Repository title</Typography>
-                <Typography>Repository description</Typography>
-                <div className={styles.starredContainer}>
-                  <Typography>12</Typography>
-                  <StarIcon />
-                </div>
-              </div>
-              <div className={styles.repoContainer}>
-                <Typography>Repository title</Typography>
-                <Typography>Repository description</Typography>
-                <div className={styles.starredContainer}>
-                  <Typography>12</Typography>
-                  <StarIcon />
-                </div>
-              </div>
+            <AccordionDetails className={styles.repoContainer}>
+              {resultGetRepo &&
+              resultGetRepo?.length > 0 &&
+              resultGetRepo[userIndex] &&
+              resultGetRepo[userIndex]?.data &&
+              resultGetRepo[userIndex]?.data?.length > 0 ? (
+                resultGetRepo[userIndex]?.data?.map((repo, repoIndex) => {
+                  return (
+                    <div key={repoIndex.toString()} className={styles.repoItem}>
+                      <Typography fontWeight={'bold'}>{repo.name}</Typography>
+                      <Typography>{repo.description}</Typography>
+                      <div className={styles.starredContainer}>
+                        <Typography>{repo.stargazers_count}</Typography>
+                        <StarIcon />
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <Typography>User does not have any repo</Typography>
+              )}
             </AccordionDetails>
           </Accordion>
         );

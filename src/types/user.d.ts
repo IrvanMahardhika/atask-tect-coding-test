@@ -15,4 +15,5 @@ interface ResultSearchUser {
 
 interface UserState {
   resultSearchUserState?: ResultSearchUser;
+  searchUserHistory: string[];
 }

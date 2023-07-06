@@ -31,14 +31,6 @@ const Pages = () => {
               </MainLayout>
             }
           />
-          <Route
-            path={`${Routes.index}/:user`}
-            element={
-              <MainLayout>
-                <Search />
-              </MainLayout>
-            }
-          />
         </RouterDOMRoutes>
       </BrowserRouter>
     </Suspense>

@@ -6,7 +6,7 @@ export const repoState: RepoState = {};
 
 const userReducer = createReducer(repoState, (builder) => {
   builder.addCase(setRepos, (state, { payload }) => {
-    return { ...state, repos: payload };
+    return { ...state, resultGetRepo: payload };
   });
 });
 

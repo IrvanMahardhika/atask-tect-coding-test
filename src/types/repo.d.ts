@@ -5,6 +5,11 @@ interface RepoItem {
   stargazers_count: number;
 }
 
+interface ResultGetRepo {
+  data: RepoItem[];
+  status: number;
+}
+
 interface RepoState {
-  repos?: RepoItem[];
+  resultGetRepo?: ResultGetRepo[];
 }
