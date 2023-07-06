@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { ITEMS_PER_PAGE } from 'constants/config';
+import { ITEMS_PER_PAGE } from '../../constants/config';
 
-import { store } from 'redux/store';
+import { store } from '../../redux/store';
 
 import {
   setResultSearchUser,

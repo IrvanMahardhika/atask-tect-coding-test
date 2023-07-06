@@ -2,7 +2,7 @@ import { call } from 'redux-saga/effects';
 
 import { ApiOptions } from 'types/api';
 
-import request from 'utils/request';
+import request from '../../../utils/request';
 
 export default function* apiSaga(
   apiOptions: ApiOptions

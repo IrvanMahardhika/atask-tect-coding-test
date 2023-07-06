@@ -15,8 +15,8 @@ import {
 } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getResultSearchUser } from 'redux/actions/user';
-import { RootState } from 'redux/store';
+import { getResultSearchUser } from '../../redux/actions/user';
+import { RootState } from '../../redux/store';
 
 import styles from './Search.module.scss';
 
@@ -53,6 +53,9 @@ const Search = () => {
     if (loader) {
       return;
     }
+    if (!usernameInput) {
+      return;
+    }
     dispatch(getResultSearchUser({ username: usernameInput }));
   };
 
@@ -82,14 +85,19 @@ const Search = () => {
         )}
       />
       <Button
+        aria-label="search-button"
         className={styles.searchButton}
         variant="contained"
         onClick={handleSearchUsername}
       >
         {loader ? (
-          <CircularProgress size={25} className={styles.loader} />
+          <CircularProgress
+            aria-label="circular-progress"
+            size={25}
+            className={styles.loader}
+          />
         ) : (
-          <Typography>Search</Typography>
+          <Typography aria-label="search-button-text">Search</Typography>
         )}
       </Button>
       {resultSearchUserState?.data?.items?.map((user, userIndex) => {
@@ -103,10 +111,16 @@ const Search = () => {
             onChange={() => handleSelectUser({ isThisUserSelected, userId })}
           >
             <AccordionSummary
+              aria-label={`accordion-button-for-user-${userId}`}
               className={styles.userContainer}
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography variant="h6">{user.login}</Typography>
+              <Typography
+                aria-label={`accordion-summary-text-for-user-${userId}`}
+                variant="h6"
+              >
+                {user.login}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className={styles.repoContainer}>
               {resultGetRepo &&
@@ -115,12 +129,23 @@ const Search = () => {
               resultGetRepo[userIndex]?.data &&
               resultGetRepo[userIndex]?.data?.length > 0 ? (
                 resultGetRepo[userIndex]?.data?.map((repo, repoIndex) => {
+                  const repoId = repo.id;
+
                   return (
                     <div key={repoIndex.toString()} className={styles.repoItem}>
-                      <Typography fontWeight={'bold'}>{repo.name}</Typography>
+                      <Typography
+                        aria-label={`repo-title-for-repo-${repoId}-user-${userId}`}
+                        fontWeight={'bold'}
+                      >
+                        {repo.name}
+                      </Typography>
                       <Typography>{repo.description}</Typography>
                       <div className={styles.starredContainer}>
-                        <Typography>{repo.stargazers_count}</Typography>
+                        <Typography
+                          aria-label={`repo-star-for-repo-${repoId}-user-${userId}`}
+                        >
+                          {repo.stargazers_count}
+                        </Typography>
                         <StarIcon />
                       </div>
                     </div>

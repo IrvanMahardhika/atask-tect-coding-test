@@ -4,10 +4,10 @@ import { setRepos } from '../actions/repo';
 
 export const repoState: RepoState = {};
 
-const userReducer = createReducer(repoState, (builder) => {
+const repoReducer = createReducer(repoState, (builder) => {
   builder.addCase(setRepos, (state, { payload }) => {
     return { ...state, resultGetRepo: payload };
   });
 });
 
-export default userReducer;
+export default repoReducer;
