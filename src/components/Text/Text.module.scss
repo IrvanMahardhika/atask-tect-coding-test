@@ -1,0 +1,46 @@
+.text {
+  color: var(--black);
+  font-size: var(--font-base);
+
+  &.centered {
+    text-align: center;
+  }
+
+  &.strong {
+    font-weight: var(--font-bold);
+  }
+
+  &.ellipsize {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.xs {
+    font-size: var(--font-xs);
+  }
+
+  &.sm {
+    font-size: var(--font-sm);
+  }
+
+  &.md {
+    font-size: var(--font-md);
+  }
+
+  &.lg {
+    font-size: var(--font-lg);
+  }
+
+  &.xl {
+    font-size: var(--font-xl);
+  }
+
+  &.white {
+    color: var(--white);
+  }
+}

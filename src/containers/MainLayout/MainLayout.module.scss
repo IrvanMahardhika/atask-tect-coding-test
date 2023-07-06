@@ -1,0 +1,31 @@
+.main {
+  background-color: #999999;
+
+  .childrenWrapper {
+    height: 100vh;
+    margin: 0 auto;
+    overflow: scroll;
+    background-color: #fff;
+  }
+
+  @media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    .childrenWrapper {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .childrenWrapper {
+      width: 587px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .childrenWrapper {
+      width: 466px;
+    }
+  }
+}

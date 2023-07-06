@@ -1,0 +1,10 @@
+.spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    color: var(--black);
+  }
+}
