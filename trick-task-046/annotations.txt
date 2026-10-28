@@ -1,0 +1,62 @@
+Task: TRACK_A_Management_Consulting_Set1_Tasks_046
+Task ID: task_bb7663310dee4be389e2d18bcde3da18
+Track: Track A
+File Type: PDFs
+How many defects do you notice at FIRST before any potential prompt edits are made?: 0
+
+Defective File: Bali-hotels-prebuy_defective.pdf
+Clean Control File (Golden): Bali-hotels-prebuy_clean.pdf
+Defective File - Rendered PNGs:
+  - png/defective-page-1.png
+  - png/defective-page-2.png
+  - png/defective-page-3.png
+  - png/defective-page-4.png
+Clean Control File - Rendered PNGs:
+  - png/clean-page-1.png
+  - png/clean-page-2.png
+  - png/clean-page-3.png
+  - png/clean-page-4.png
+
+================================================================================
+DEFECT ANNOTATIONS (5 DISTINCT GROUPED DEFECTS)
+================================================================================
+
+Item 1
+Location: Page 1
+Defect Name: Clustered bar chart data labels overlapping adjacent bars and labels
+Severity: Major
+Description: In the middle-right section of Page 1, inside the "2025 Forgone Commission Revenue (USD) & Forgone Room Nights by Area" clustered bar chart, several data label boxes collide with neighboring bars and labels. Specifically, the Uluwatu revenue label "$1,800K ($1,800,393.33)" and room-night label "17K (16,599)" overlap at their corners, the Nusa Dua revenue label "$1,469K ($1,469,333.44)" overlaps the adjacent orange labels, the Jimbaran labels "$1,176K ($1,175,724.17)" and "16K (16,296)" stack on top of each other, and the Kuta "9K (9,160)" and Ubud "8K (7,918)" labels sit on top of the dark green revenue bars.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 2
+Location: Page 1
+Defect Name: Doughnut chart center legend box covering slice data labels
+Severity: Critical
+Description: In the bottom-left quadrant of Page 1, inside the "2025 Forgone Commission Revenue Share by Area" doughnut chart, the central legend box titled "Share ($7.29M)" extends beyond the inner ring and sits on top of the slice data labels. It obscures the left side of the "Kuta 4.91% ($358K)" label box and collides with the adjacent "Ubud 7.05% ($514K)", "Canggu 9.61% ($700K)", and "Jimbaran 16.13% ($1,176K)" label boxes.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 3
+Location: Page 2
+Defect Name: Flowchart arrow labels colliding with boxes and clipped selection rule text
+Severity: Major
+Description: In the center-right section of Page 2, inside the "2026 Pre-Buy Room Purchase Flow: Area -> Qualifying Rule -> Top Hotel & Portfolio" diagram, the bottom horizontal orange arrows and their text labels (such as "The Teja Petitenget (159 RN | $8,604.71) | Area Total: 527 RN | $36,045.65") run directly across the bottom borders of the blue "Qualifying Selection Rule" boxes and collide with the blue arrow text above them across all seven rows, while the top border of the Nusa Dua rule box slices across the upper strokes of "Min Order + Uplift Floor".
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 4
+Location: Page 3
+Defect Name: Combination chart data labels colliding and cut off at the right axis
+Severity: Critical
+Description: In the middle-right section of Page 3, inside the "2026 Pre-Buy Room Nights Sold & Net Revenue by Location" combination chart, the orange revenue label boxes for Nusa Dua "$22K ($22,044.15)", Ubud "$22K ($21,511.13)", and Kuta "$23K ($22,515.56)" overlap horizontally and collide with the Kuta bar label "1K (1,297.90)", while the right end of the Kuta revenue label box is sliced off at the right secondary Y-axis border and the Jimbaran bar label "641 (640.56)" extends over the neighboring Ubud bar.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 5
+Location: Page 4
+Defect Name: ROI clustered bar chart data labels overlapping bars and clipped at chart borders
+Severity: Major
+Description: In the upper-right section of Page 4, inside the "2026 Pre-Buy ROI (%), Margin (%), and Net Revenue (USD) by Location & Total" clustered bar chart, the orange net revenue label boxes (such as "$22K ($22,044.15)", "$68K ($67,633.40)", "$19K ($19,397.60)", and "$28K ($27,583.29)") sit directly on top of the neighboring green ROI and red margin bars and collide with the red margin label boxes, while the left border of the Jimbaran ROI label "60% (60.40%)" and the top-right border of the Total revenue label "$226K ($225,840.66)" are clipped at the outer edges of the chart canvas.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+================================================================================
+STEP 4 GEMINI 3.8 FLASH PROMPT (send with ONLY the 4 defective PNGs attached)
+================================================================================
+Inspect these rendered page images and list every visual rendering or layout defect you find, including its exact location and what is broken.
