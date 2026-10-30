@@ -1,0 +1,55 @@
+Task: TRACK_A_Management_Consulting_Set1_Tasks_046
+Task ID: task_bb7663310dee4be389e2d18bcde3da18
+Track: Track A
+File Type: PDFs
+How many defects do you notice at FIRST before any potential prompt edits are made?: 0
+
+Defective File: Bali-hotels-prebuy_defective.pdf
+Clean Control File (Golden): Bali-hotels-prebuy_clean.pdf
+Defective File - Rendered PNGs:
+  - png/defective-page-1.png
+  - png/defective-page-2.png
+  - png/defective-page-3.png
+  - png/defective-page-4.png
+Clean Control File - Rendered PNGs:
+  - png/clean-page-1.png
+  - png/clean-page-2.png
+  - png/clean-page-3.png
+  - png/clean-page-4.png
+
+================================================================================
+DEFECT ANNOTATIONS (4 DISTINCT GROUPED DEFECTS)
+================================================================================
+
+Item 1
+Location: Pages 3 and 4, in the graphs in the middle-right of each page
+Defect Name: Overlapping labels
+Severity: Minor
+Description: On page 3, in the chart "2026 Pre-Buy Room Nights Sold & Net Revenue by Location," the Jimbaran green label "641 (640.56)" overlaps the Ubud green label "527 (527.12)," and the Ubud label sits on the Ubud bar. On page 4, in the chart "2026 Pre-Buy ROI (%), Margin (%), and Net Revenue (USD) by Location & Total," the value labels overlap one another and the bars, including "$226K ($225,840.66)" on "56% (56.46%)" and "60% (60.40%)" across the left axis.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 2
+Location: Page 4, on the right side of the graph in the middle-right of the page
+Defect Name: Clipped text
+Severity: Minor
+Description: On the page 4 chart "2026 Pre-Buy ROI (%), Margin (%), and Net Revenue (USD) by Location & Total," the vertical right-axis title "Pre-Buy Revenue (USD)" runs off the right edge. The outer edge of the letters, including "Revenue" and "(USD)," is cut off.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 3
+Location: Page 4, in the table at the bottom of the page
+Defect Name: Clipped table text
+Severity: Minor
+Description: In the bottom table on page 4, the first line of the header titles touches the top border of the header row, so the tops of the letters look cut off. This affects "Model," both "Pre-Buy" labels, "ROI," "Margin %," and "Top Portfolio Hotel."
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+Item 4
+Location: Page 3, on the right side of the graph in the middle-right of the page
+Defect Name: Chart value overlapping line graph
+Severity: Minor
+Description: On Page 3, in the "2026 Pre-Buy Room Nights Sold & Net Revenue by Location" chart, chart values overlap the line graph between $15K and $30K on the right axis.
+Model Detected: (run Gemini 3.8 Flash check, then mark true or false)
+
+================================================================================
+STEP 4 GEMINI 3.8 FLASH PROMPT (send with ONLY the 4 defective PNGs attached)
+================================================================================
+Inspect these rendered page images and list every visual rendering or layout defect you find, including its exact location and what is broken.

@@ -1,0 +1,43 @@
+Task: TRACK_B_Finance_and_Accounting_Set1_Tasks_014
+Task ID: task_c3277aa0a2a34ae0a8b09cd5efa76381
+Track: B
+File type: PDFs
+Prompt: leave the pre-filled prompt untouched.
+
+Clean control file: FY2027_AdjustedBudget_08232026_clean.pdf
+Defective file: FY2027_AdjustedBudget_08232026_defective.pdf
+Clean PNG: png/clean-page-1.png
+Defective PNG: png/defective-page-1.png
+
+The clean file is the pre-seeded PDF, unchanged. Words and figures in the defective file are the same; only placement differs.
+
+Defect 1
+Location: Page 1
+Defect Name: Introduction lines cut off at the right edge
+Severity: Critical
+Description: In the opening paragraph under "INTRODUCTION & IN-SCOPE DEPARTMENTAL OVERVIEW" on Page 1, the full-width lines run past the right page edge and are sliced off. The visible text stops mid-word, including "were cons," "Legal & Compli," and "FY2025 per," so those line endings cannot be read.
+Model Detected: (run Gemini, then set true or false)
+
+Defect 2
+Location: Page 1
+Defect Name: Adjustment labels covering budget column labels
+Severity: Critical
+Description: In the middle of Page 1, inside the FY2027 adjusted departmental budget chart, the labels "+$3.64M," "+$2.17M," "-$0.49M," "-$3.65M," and "-$1.06M" sit on top of the column labels "$164.31M," "$195.05M," "$97.27M," "$162.04M," and "$210.12M." Those adjustment boxes cover the printed budget amounts, so the column values cannot be read.
+Model Detected: (run Gemini, then set true or false)
+
+Defect 3
+Location: Page 1
+Defect Name: Reference-line legend cut off at the page edge
+Severity: Critical
+Description: At the top of the combination chart on Page 1, the legend item "$0.00M Reference Line" runs off the right edge of the page. Only "$0.00M Refe" remains visible, and the rest of that legend label is sliced off.
+Model Detected: (run Gemini, then set true or false)
+
+Defect 4
+Location: Page 1
+Defect Name: Footer note overlapping the summary paragraph
+Severity: Major
+Description: At the bottom of Page 1, the italic footer note beginning "Note: FY2027 and calendar year 2027 are one and the same" runs through the last line of the company-wide budget adjustment summary. The footer covers the closing text, including "Legal & Compliance ($37.33M)," "Business Operations ($98.39M)," "$0K," and "0.00%," so that line is hard to read.
+Model Detected: (run Gemini, then set true or false)
+
+Gemini prompt (send exactly this, with only the defective PNG attached):
+Inspect these rendered page images and list every visual rendering or layout defect you find, including its exact location and what is broken.
